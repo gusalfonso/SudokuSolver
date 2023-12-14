@@ -8,6 +8,7 @@ Sudoku, a popular numerical puzzle, serves as an excellent playground for explor
 The Recursive Sudoku Solver
 Let's dissect a Python function that embodies the essence of recursion in solving Sudoku puzzles:
 
+```python
 def solver(game):
     # For each row
     for i in range(0, 9):
@@ -21,6 +22,7 @@ def solver(game):
                         game[i][j] = 0
                 return
     print(np.matrix(game))
+```
 
 The Recursive Dance
 Exploring Possibilities:
@@ -40,6 +42,7 @@ The current cell is reset to 0, allowing the algorithm to try different numbers 
 The Validator Function
 The check function is crucial in determining the validity of a number placement:
 
+```python
 def check(game, x, y, n):
     # Check if n is already in the row or column
     for i in range(0, 9):
@@ -55,6 +58,7 @@ def check(game, x, y, n):
             if game[x0 + i][y0 + j] == n:
                 return False
     return True
+```
 
 Conclusion: Unraveling the Recursion Magic
 Recursion, as demonstrated in this Sudoku solver example, unveils its magic by elegantly handling complex problems through a divide-and-conquer approach. The solver explores countless possibilities, gracefully backtracking when needed, until it unveils the solution to the Sudoku puzzle. The recursive dance in Python showcases the versatility and power of this programming paradigm, making it an invaluable tool in a programmer's toolkit.
