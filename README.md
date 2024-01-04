@@ -1,11 +1,11 @@
-The Art of Recursion in Python: A Sudoku Solver Journey
+# The Art of Recursion in Python: A Sudoku Solver Journey
 
 Recursion is a powerful programming concept that allows a function to call itself, providing an elegant solution to problems that exhibit repetitive and self-similar structures. In this article, we'll explore the beauty of recursion in Python through the lens of a Sudoku solver.
 
-The Sudoku Challenge
+## The Sudoku Challenge
 Sudoku, a popular numerical puzzle, serves as an excellent playground for exploring recursion. The goal is to fill a 9x9 grid with digits from 1 to 9, adhering to specific rules: each row, each column, and each 3x3 subgrid must contain all the digits without repetition.
 
-The Recursive Sudoku Solver
+## The Recursive Sudoku Solver
 Let's dissect a Python function that embodies the essence of recursion in solving Sudoku puzzles:
 
 ```python
@@ -24,7 +24,7 @@ def solver(game):
     print(np.matrix(game))
 ```
 
-The Recursive Dance
+## The Recursive Dance
 Exploring Possibilities:
 
 The outer loop iterates over each row.
@@ -60,7 +60,14 @@ def check(game, x, y, n):
     return True
 ```
 
-Conclusion: Unraveling the Recursion Magic
+
+## AI-Powered Sudoku Solving
+In addition to the recursive solver, an artificial intelligence approach was employed using Convolutional Neural Networks (CNN). A model inspired by LeNet was trained to recognize and solve Sudoku puzzles, showcasing the integration of advanced techniques to tackle the same problem.
+
+## Conclusion: Unraveling the Recursion Magic
+Recursion, as demonstrated in this Sudoku solver example, unveils its magic by elegantly handling complex problems through a divide-and-conquer approach. The solver explores countless possibilities, gracefully backtracking when needed, until it unveils the solution to the Sudoku puzzle. The combination of recursive algorithms and AI models highlights the versatility and power of different programming paradigms, making them invaluable tools in a programmer's toolkit.
+
+## Conclusion: Unraveling the Recursion Magic
 Recursion, as demonstrated in this Sudoku solver example, unveils its magic by elegantly handling complex problems through a divide-and-conquer approach. The solver explores countless possibilities, gracefully backtracking when needed, until it unveils the solution to the Sudoku puzzle. The recursive dance in Python showcases the versatility and power of this programming paradigm, making it an invaluable tool in a programmer's toolkit.
 
 
