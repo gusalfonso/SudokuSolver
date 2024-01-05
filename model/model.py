@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from keras.preprocessing.image import ImageDataGenerator
 
 samplespath = 'D:/Projects/SudokuSolver/modelimg'
 samples = os.listdir(samplespath)
@@ -50,17 +51,31 @@ def changestr(l):
 y_train = np.array(changestr(y_train), dtype=np.uint8)
 y_test = np.array(changestr(y_test), dtype=np.uint8)
 
+datagen = ImageDataGenerator(
+    rotation_range=10,
+    width_shift_range=0.1,
+    height_shift_range=0.1,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True,
+    fill_mode='nearest')
+
+datagen.fit(x_train)
+
 model = Sequential()
 model.add(Conv2D(64, (5,5),
                 activation='relu',
                 input_shape=(28, 28, 1),
                 padding="same"))
+model.add(Dropout(0.3))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(128, (3, 3), activation='relu',
                 padding="same"))
+model.add(Dropout(0.3))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(256, (3, 3), activation='relu',
                 padding="same"))
+model.add(Dropout(0.3))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Flatten())
 model.add(Dense(256, activation='relu'))
@@ -72,13 +87,15 @@ model.compile(loss='sparse_categorical_crossentropy',
               optimizer='adam',
               metrics=['accuracy'])
 
-batch_size = 1
+batch_size = 6
 epochs = 10
 
-model.fit(x_train, y_train, batch_size=batch_size,
-          epochs=epochs,
-          shuffle=1,
-          validation_data=(x_test, y_test))
+model.fit(datagen.flow(x_train, y_train, batch_size=32), epochs=epochs)
+
+# model.fit(datagen.flow(x_train, y_train, batch_size=batch_size,
+#           epochs=epochs),
+#           shuffle=1,
+#           validation_data=(x_test, y_test))
 
 score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss:', score[0])
