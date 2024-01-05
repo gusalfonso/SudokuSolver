@@ -51,7 +51,7 @@ def split_numbers(img):
     return num
 
 def load_model():
-    model = tf.keras.models.load_model('D:\Projects\SudokuSolver\model\my_model_digits_1_9.keras')
+    model = tf.keras.models.load_model('D:\Projects\SudokuSolver\my_model_digits_1_9.keras')
     return model
 
 def iswhite(image, perc = 95):
