@@ -19,6 +19,9 @@ img_process = f.preprocess(img_stand)
 s_cont = f.findsudokuincont(img_process)
 s_wrap = f.wrap(img_stand, s_cont)
 
+# cv.imshow("", s_wrap)
+# cv.waitKey(0)
+
 # Get each number cell and clean it:
 numbers = f.split_numbers(s_wrap)
 
@@ -46,11 +49,15 @@ for i, cropped in enumerate(numbers2):
         pred.append(prediction)
         
 sudoku = np.array(pred).reshape((9,9))
+
+print(sudoku)
 sudoku_for_solution = sudoku.copy()
 
 # Solution, and array with only complete numbers.
 sol = ss.solver(sudoku_for_solution)
+print(sol)
 only_sol = f.onlysolution(sudoku, sol)
+print(only_sol)
 
 # Some coordinates to put the numbers in the image:
 top_left_x, top_left_y = s_cont[0][0], s_cont[0][1]
@@ -76,7 +83,7 @@ for i in range(9):
             y_position = top_left_y + i * cell_y + (cell_y // 2 + text_size[1] // 2)
             cv.putText(image_with_solution, str(value), (int(x_position), int(y_position)), font, font_scale, font_color, font_thickness)
 
-# Mostrar la imagen con la solución
+# Show solution on image.
 cv.imshow("",image_with_solution)
 cv.waitKey(0)
 
